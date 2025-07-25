@@ -600,7 +600,7 @@ def genetic_algorithm():
         for index, score in enumerate(fitness_scores):
             if score > best_score:
                 best_score = score
-                torch.save(population[index].state_dict(), 'dino_top_agent.pth')
+                torch.save(population[index].state_dict(), 'output_agents/dino_top_agent.pth')
                 print(f'New Best: {best_score}')
 
         # Get the average of the generation
@@ -612,13 +612,13 @@ def genetic_algorithm():
             population_copy = population[:]
             fitness_copy = fitness_scores[:]
 
-            torch.save(population_copy[fitness_copy.index(max(fitness_copy))].state_dict(), 'dino_1_avg_agent.pth')
+            torch.save(population_copy[fitness_copy.index(max(fitness_copy))].state_dict(), 'output_agents/dino_1_avg_agent.pth')
             fitness_copy.pop(fitness_copy.index(max(fitness_copy)))
             
-            torch.save(population_copy[fitness_copy.index(max(fitness_copy))].state_dict(), 'dino_2_avg_agent.pth')
+            torch.save(population_copy[fitness_copy.index(max(fitness_copy))].state_dict(), 'output_agents/dino_2_avg_agent.pth')
             fitness_copy.pop(fitness_copy.index(max(fitness_copy)))
 
-            torch.save(population_copy[fitness_copy.index(max(fitness_copy))].state_dict(), 'dino_3_avg_agent.pth')
+            torch.save(population_copy[fitness_copy.index(max(fitness_copy))].state_dict(), 'output_agents/dino_3_avg_agent.pth')
             fitness_copy.pop(fitness_copy.index(max(fitness_copy)))
 
             print(f'New Best Avg: {best_avg_score}')
