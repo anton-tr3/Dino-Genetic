@@ -437,7 +437,7 @@ def normalise_player_height(player_y_pos):
 
     return abs((player_y_pos - floor_y) / (max_player_height - floor_y))
 
-# y_position of the obstacle can be 2 values: cacti (small cacti = 325, large cacti = 300), or bird = 250, we will convert this to 0, 1 and 2 respectively
+# y_position of the obstacle can be 2 values: cacti (small cacti = 325, large cacti = 300), or bird = 250, we will convert this to a categorical feature
 def obstacle_pos_to_state(obstacle_y_pos):
     if obstacle_y_pos == 325 or obstacle_y_pos == 300:
         return [1, 0] # cacti
@@ -465,7 +465,7 @@ class DinoNN(nn.Module):
     def __init__(self):
         super().__init__()
         # We will have 2 fully connected layers and 1 output layer
-        self.fc1 = nn.Linear(6, 32)    # 4 inputs (y_pos, GAME_SPEED, 2 types of obstacles, obstacle_dist)
+        self.fc1 = nn.Linear(6, 32)    # 6 inputs (y_pos, GAME_SPEED, 2 types of obstacles, obstacle_dist)
         self.fc2 = nn.Linear(32, 32)
         self.output = nn.Linear(32, 3) # 3 outputs (0 = nothing, 1 = jump, 2 = duck)
 
@@ -535,6 +535,7 @@ def selection(agent_population, fitness_scores):
 def evolution(parents):
     new_population = []
 
+    # Select 2 random parents and create a child
     while len(new_population) < POPULATION_SIZE:
         parent1, parent2 = random.sample(parents, 2)
 
@@ -602,9 +603,10 @@ def genetic_algorithm():
                 torch.save(population[index].state_dict(), 'dino_top_agent.pth')
                 print(f'New Best: {best_score}')
 
-        
+        # Get the average of the generation
         avg_score = np.mean(fitness_scores)
         
+        # If this is the best average generation, save the top 3 agents from the population
         if avg_score > best_avg_score:
             best_avg_score = avg_score
             population_copy = population[:]
@@ -637,8 +639,7 @@ def genetic_algorithm():
         population = elites + new_population[:POPULATION_SIZE - ELITE_COUNT]
 
 
-        # Run the game using a single agent
-
+# Replay the game using a saved agent
 def simulate_agent(model_path):
     env = DinoEnvironment(render = True)
     state = env.reset()
