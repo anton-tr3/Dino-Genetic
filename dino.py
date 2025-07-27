@@ -3,12 +3,19 @@ import random
 import copy
 import numpy as np
 import math
+import sys
+import argparse
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
 pygame.init()
+
+# Program arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('-g', '--genetic', help='run genetic algorithm with the given parameters and output top agents', action='store_true')
+parser.add_argument('-p', '--play', type = str, help='watch a specified agent play the game')
 
 # Game Constants
 FPS = 40
@@ -638,7 +645,6 @@ def genetic_algorithm():
         # Add elites in
         population = elites + new_population[:POPULATION_SIZE - ELITE_COUNT]
 
-
 # Replay the game using a saved agent
 def simulate_agent(model_path):
     env = DinoEnvironment(render = True)
@@ -667,8 +673,10 @@ def simulate_agent(model_path):
 
         state, reward, done = env.step(action)
 
-genetic_algorithm()
-simulate_agent('dino_top_agent.pth')
-simulate_agent('dino_1_avg_agent.pth')
-simulate_agent('dino_2_avg_agent.pth')
-simulate_agent('dino_3_avg_agent.pth')
+# Get specified arguments and run either genetic algorithm or replay an agent
+args = parser.parse_args()
+if args.genetic:
+    genetic_algorithm()
+
+if args.play:
+    simulate_agent(args.play)
