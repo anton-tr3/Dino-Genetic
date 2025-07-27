@@ -4,16 +4,16 @@ This project trains an AI to play a recreation of the Chrome Dinosaur game, usin
 ## Implementation
 
 ### Genetic Algorithm Components
-- **Selection**  
+- Selection  
 Roulette wheel selection is applied, where parents are chosen based on their relative fitness. Higher-performing agents are more likely to be selected to be parents.
 
-- **Crossover:**  
+- Crossover  
 For each pair of parents, their neural network parameters are combined using a random binary mask to produce a child (parameters are taken at random from each parent).
 
-- **Mutation:**  
+- Mutation  
 Each child has a chance for small random mutations to their neural network weights to introduce variation.
 
-- **Elitism:**  
+- Elitism
 The top-performing agents of each generation (elite count) taken into the next generation unchanged.
 
 ### Fitness Function
