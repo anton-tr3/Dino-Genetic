@@ -4,6 +4,19 @@ This project trains an AI to play a recreation of the Chrome Dinosaur game using
 ## Features
 
 ### Default Parameters
+|              Parameter | Value |
+| ---------------------: | :---- |
+|        Population Size | 300   |
+| Parents per Generation | 50    |
+|            Generations | 150   |
+|          Mutation Rate | 0.2   |
+|      Mutation Strength | 1     |
+|            Elite Count | 10    |
+
+### Fitness Function
+- Rewards clearing obstacles: +75 per obstacle
+- Penalizes jumping: -4 per frame
+- Penalizes ducking: -1 per frame
 
 ## Usage
 ### 1. Clone repo
