@@ -49,7 +49,7 @@ pip install -r requirements.txt
 ### 3. Run genetic algorithm
 Train the agents with the given parameters. Fitness of each generation will be printed on the console. The top scoring agent along with the top 3 agents of the best performing generation will be saved in `/output_agents`.
 ```
-python dino.py -genetic
+python dino.py --genetic
 ```
 
 ### 4. Replay saved agents
