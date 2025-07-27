@@ -3,9 +3,7 @@ import random
 import copy
 import numpy as np
 import math
-import sys
 import argparse
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -657,6 +655,9 @@ def simulate_agent(model_path):
 
     done = False
 
+    # Count the number of frames passed. This will be equivalent to self.total_score in the environment
+    score = 0
+
     # Play the game using the model
     while done == False:
         y_pos, GAME_SPEED, obstacle_y_pos, obstacle_dist, is_on_ground = state
@@ -671,7 +672,10 @@ def simulate_agent(model_path):
             net_output = model(input_tensor)
             action = torch.argmax(net_output).item()
 
+        score += 1
         state, reward, done = env.step(action)
+
+    print(f'Final Score: {score}')
 
 # Get specified arguments and run either genetic algorithm or replay an agent
 args = parser.parse_args()
