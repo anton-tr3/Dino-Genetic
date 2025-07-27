@@ -1,9 +1,10 @@
 # 🦖 Chrome Dinosaur AI: Genetic Algorithm Agent
 This project trains an AI to play a recreation of the Chrome Dinosaur game, using a genetic algorithm that evolves several neural networks to learn the game environment. 
 
-<video width="600" autoplay loop muted>
-  <source src="assets/demo.mp4" type="video/mp4">
-</video>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6d1df4ff-f0d4-4c5f-8217-60a0e24f1a53" width="800"/>
+</p>
+
 
 ## Implementation
 
