@@ -2,7 +2,7 @@
 This project trains an AI to play a recreation of the Chrome Dinosaur game, using a genetic algorithm that evolves several neural networks to learn the game environment. 
 
 <video width="600" autoplay loop muted>
-  <source src="media/demo.mp4" type="video/mp4">
+  <source src="assets/demo.mp4" type="video/mp4">
 </video>
 
 ## Implementation
