@@ -13,7 +13,7 @@ For each pair of parents, their neural network parameters are combined using a r
 - Mutation  
 Each child has a chance for small random mutations to their neural network weights to introduce variation.
 
-- Elitism
+- Elitism  
 The top-performing agents of each generation (elite count) taken into the next generation unchanged.
 
 ### Fitness Function
